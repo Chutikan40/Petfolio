@@ -19,14 +19,15 @@ class MainApp extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),                          // กำหนดขอบเขตของ Container เป็นวงกลม
         ),
         focusedBorder: OutlineInputBorder(                                  // กำหนดสีของเส้นกรอบเมื่อมีการโฟกัส
-          borderSide: const BorderSide(color: Colors.grey),
+          borderSide: const BorderSide(color: Colors.blue),
           borderRadius: BorderRadius.circular(20),                          // กำหนดขอบเขตของ Container เป็นวงกลม
 
         ),
         labelStyle: const TextStyle(color: Colors.grey),                        // กำหนดสีของข้อความใน text input
         
+        
         ),
-        scaffoldBackgroundColor: Colors.blue[50],                            // กำหนดสีพื้นหลังของ Scaffold เป็นสีเทาอ่อน
+        scaffoldBackgroundColor: const Color.fromARGB(255, 128, 182, 225),                            // กำหนดสีพื้นหลังของ Scaffold เป็นสีเทาอ่อน
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.blue,
         ),
@@ -41,7 +42,18 @@ class MainApp extends StatelessWidget {
           ),
           displaySmall: TextStyle(
             color: Colors.white,
-          )
+            fontSize: 30.0,
+          ),
+          bodyLarge: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            
+          ),
         ),
         
       ),
