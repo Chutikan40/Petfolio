@@ -8,6 +8,9 @@ void main() {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,7 +30,7 @@ class MainApp extends StatelessWidget {
         
         
         ),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 128, 182, 225),                            // กำหนดสีพื้นหลังของ Scaffold เป็นสีเทาอ่อน
+        scaffoldBackgroundColor: const Color.fromARGB(255, 253, 253, 253),                            // กำหนดสีพื้นหลังของ Scaffold เป็นสีเทาอ่อน
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.blue,
         ),
