@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:petfolio/model/profile.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+  RegisterPage({super.key});
+
+  final formKey = GlobalKey<FormState>();
+  // Profile profile = Profile();
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold( 
+        key: formKey,
         appBar: AppBar(
 
           title: Text(
@@ -21,20 +26,24 @@ class RegisterPage extends StatelessWidget {
                 Tab(
                   child: Text(
                     "Login",
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  // ignore: deprecated_member_use
+                  style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
                 Tab(
                   child: Text(
                     "Register",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    // ignore: deprecated_member_use
+                    style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ),
               ],
             ),
         ),
         body: const TabBarView(
+          
           children: [
+
             LoginCard(),
             SignupCard(),
           ]
@@ -49,62 +58,71 @@ class LoginCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Container(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const Text('Login',
-              style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-                fontSize: 50.0,
-              ),
-              ),
-              const SizedBox(height: 40),
-              const TextField(
-                decoration: InputDecoration(labelText: 'Email'),
-              ),
-              const SizedBox(height: 10),
-              const TextField(
-                decoration: InputDecoration(labelText: 'Password'),
-                obscureText: true,
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  //
-                },
-                child: Text('Login',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                )
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => const ForgotPasswordPage()
-                    ),
-                    );
-                  },
-                  child: const Text("Forgot password?",
-                    style: TextStyle(color: Colors.blue),
+          child: Form(
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text('Login',
+                  style: TextStyle(
+                    color: Colors.blue.shade100,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50.0,
                   ),
-                ),
-                const SizedBox(height: 10),
-                const Text('Or'),
-                SignInButton(
-                  Buttons.google,
-                  onPressed: () {},
-                ),
-                SignInButton(
-                  Buttons.facebook,
-                  onPressed: () {},
-                ),
-                const SizedBox(height: 10),
-                const Text("Dont have an account? Please Register"),
+                  ),
+                  const SizedBox(height: 40),
+                  const TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(labelText: 'Email'),
+                  ),
+                  const SizedBox(height: 10),
+                  const TextField(
+                    decoration: InputDecoration(labelText: 'Password'),
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 20),
 
-            ],
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        //
+                      },
+                      child: Text('Login',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      )
+                      ),
+                  ),
+
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => const ForgotPasswordPage()
+                        ),
+                        );
+                      },
+                      child: Text("Forgot password?",
+                        style: TextStyle(color: Colors.blue.shade50),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text('Or'),
+                    SignInButton(
+                      Buttons.google,
+                      onPressed: () {},
+                    ),
+                    SignInButton(
+                      Buttons.facebook,
+                      onPressed: () {},
+                    ),
+                    const SizedBox(height: 10),
+                    const Text("Dont have an account? Please Register"),
+
+                ],
+              ),
           ),
           ),
 
@@ -120,55 +138,62 @@ class SignupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const Text('Register',
-              style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-                fontSize: 50.0,
-              ),
-              ),
-          const SizedBox(height: 40),
-          const TextField(
-            decoration: InputDecoration(labelText: 'Username'),
-          ),
-          const SizedBox(height: 10),
-          const TextField(
-            decoration: InputDecoration(labelText: 'Email'),
-            obscureText: true,
-          ),
-          const SizedBox(height: 10),
-    
-          const TextField(
-            decoration: InputDecoration(labelText: 'Password'),
-          ),
-          const SizedBox(height: 10),
-          const TextField(
-            decoration: InputDecoration(labelText: 'Confirm Password'),
-            obscureText: true,
-          ),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              //
-            },
-            child: Text('Sign up',
-              style: Theme.of(context).textTheme.bodyLarge,
-            )
+      child: Form(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text('Register',
+                style: TextStyle(
+                  color: Colors.blue.shade100,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50.0,
+                ),
+                ),
+            const SizedBox(height: 40),
+            const TextField(
+              decoration: InputDecoration(labelText: 'Username'),
             ),
-            const Text('Or'),
-            SignInButton(
-              Buttons.google,
-              onPressed: () {},
+            const SizedBox(height: 10),
+            const TextField(
+              decoration: InputDecoration(labelText: 'Email'),
+              obscureText: true,
             ),
-            SignInButton(
-              Buttons.facebook,
-              onPressed: () {},
+            const SizedBox(height: 10),
+      
+            const TextField(
+              decoration: InputDecoration(labelText: 'Password'),
+            ),
+            const SizedBox(height: 10),
+            const TextField(
+              decoration: InputDecoration(labelText: 'Confirm Password'),
+              obscureText: true,
+            ),
+            const SizedBox(height: 20),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  //
+                },
+                child: Text('Sign up',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )
+                ),
             ),
 
-        ],
+              const Text('Or'),
+              SignInButton(
+                Buttons.google,
+                onPressed: () {},
+              ),
+              SignInButton(
+                Buttons.facebook,
+                onPressed: () {},
+              ),
+
+          ],
+        ),
       ),
       );
   }
